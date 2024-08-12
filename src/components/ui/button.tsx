@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react";
+import { forwardRef, type ComponentProps } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const button = tv({
@@ -24,11 +24,16 @@ const button = tv({
 
 type ButtonProps = ComponentProps<'button'> & VariantProps<typeof button>
 
-export function Button({ variant, size, className, ...props }: ButtonProps) {
-  return (
-    <button 
-      {...props}
-      className={button({ variant, size, className })}
-    />
-  )
-}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, ...props }, ref) => {
+    return (
+      <button 
+        {...props}
+        ref={ref}
+        className={button({ variant, size, className })}
+      />
+    )
+  }
+)
+
+Button.displayName = 'Button'
