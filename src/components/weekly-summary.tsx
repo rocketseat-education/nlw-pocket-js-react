@@ -1,7 +1,10 @@
 import { CheckCircle2, Plus } from "lucide-react";
 import { InOrbitIcon } from "./in-orbit-icon";
 import { DialogTrigger } from "@radix-ui/react-dialog";
-import { Progress, ProgressIndicator } from "@radix-ui/react-progress";
+import { Button } from "./ui/button";
+import { OutlineButton } from "./ui/outline-button";
+import { Progress, ProgressIndicator } from "./ui/progress-bar";
+import { Separator } from "./ui/separator";
 
 export function WeeklySummary() {
   return (
@@ -12,15 +15,17 @@ export function WeeklySummary() {
           <span className="text-lg font-semibold">05 a 12 de Agosto</span>
         </div>
 
-        <DialogTrigger className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-violet-500 text-indigo-50 text-sm font-medium tracking-tight hover:bg-violet-600">
-          <Plus className="size-4" />
-          Cadastrar meta
+        <DialogTrigger asChild>
+          <Button size="sm">
+            <Plus className="size-4" />
+            Cadastrar meta
+          </Button>
         </DialogTrigger>
       </div>
 
       <div className="flex flex-col gap-3">
-        <Progress value={50} max={100} className="bg-zinc-900 rounded-full h-2">
-          <ProgressIndicator className="bg-gradient-to-r from-pink-500 to-violet-500 w-1/2 h-2 rounded-full" />
+        <Progress value={50} max={100}>
+          <ProgressIndicator style={{ width: '50%' }} />
         </Progress>
 
         <div className="flex items-center justify-between text-xs text-zinc-400">
@@ -29,31 +34,28 @@ export function WeeklySummary() {
         </div>
       </div>
 
-      <div className="h-px bg-zinc-900" />
-
+      <Separator />
+      
       <div className="flex flex-wrap gap-3">
-        <button className="flex items-center px-3 py-2 gap-2 leading-none rounded-full border border-dashed border-zinc-800 text-sm text-zinc-300 hover:border-zinc-700">
+        <OutlineButton>
           <Plus className="size-4 text-zinc-600" />
           Meditar
-        </button>
+        </OutlineButton>
 
-        <button className="flex items-center px-3 py-2 gap-2 leading-none rounded-full border border-dashed border-zinc-800 text-sm text-zinc-300 hover:border-zinc-700">
+        <OutlineButton>
           <Plus className="size-4 text-zinc-600" />
           Praticar exercício
-        </button>
+        </OutlineButton>
 
-        <button className="flex items-center px-3 py-2 gap-2 leading-none rounded-full border border-dashed border-zinc-800 text-sm text-zinc-300 hover:border-zinc-700">
+        <OutlineButton>
           <Plus className="size-4 text-zinc-600" />
           Levantar cedo
-        </button>
+        </OutlineButton>
 
-        <button 
-          disabled
-          className="flex items-center px-3 py-2 gap-2 leading-none rounded-full border border-dashed border-zinc-800 text-sm text-zinc-300 hover:border-zinc-700 disabled:opacity-50 disabled:pointer-events-none"
-        >
+        <OutlineButton>
           <Plus className="size-4 text-zinc-600" />
           Manter uma boa alimentação
-        </button>
+        </OutlineButton>
       </div>
 
       <div className="space-y-6">

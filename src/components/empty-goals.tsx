@@ -3,6 +3,7 @@ import { DialogTrigger } from '@radix-ui/react-dialog'
 
 import logo from '../assets/in-orbit-logo.svg'
 import rocketLaunchIllustration from '../assets/rocket-launch-illustration.svg'
+import { Button } from './ui/button'
 
 export function EmptyGoals() {
   return (
@@ -18,9 +19,11 @@ export function EmptyGoals() {
         Você ainda não cadastrou nenhuma meta, que tal cadastrar uma agora mesmo?
       </p>
 
-      <DialogTrigger className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-violet-500 text-indigo-50 text-sm font-medium tracking-tight hover:bg-violet-600">
-        <Plus className="size-4" />
-        Cadastrar meta
+      <DialogTrigger asChild>
+        <Button>
+          <Plus className="size-4" />
+          Cadastrar meta
+        </Button>
       </DialogTrigger>
     </main>
   )
