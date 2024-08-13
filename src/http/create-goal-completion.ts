@@ -2,7 +2,9 @@ export interface CreateGoalCompletionRequest {
   goalId: string
 }
 
-export async function createGoalCompletion({ goalId }: CreateGoalCompletionRequest): Promise<void> {
+export async function createGoalCompletion({
+  goalId,
+}: CreateGoalCompletionRequest): Promise<void> {
   const response = await fetch('http://localhost:3333/completions', {
     method: 'POST',
     headers: {
@@ -10,7 +12,7 @@ export async function createGoalCompletion({ goalId }: CreateGoalCompletionReque
     },
     body: JSON.stringify({
       goalId,
-    })
+    }),
   })
 
   if (!response.ok) {

@@ -23,7 +23,7 @@
       "recommended": true,
       "style": {
         "noNonNullAssertion": "off"
-      },
+      }
     }
   },
   "files": {

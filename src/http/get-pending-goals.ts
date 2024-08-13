@@ -1,10 +1,10 @@
 export interface GetPendingGoalsResponse {
   pendingGoals: {
-    id: string;
-    title: string;
-    desiredWeeklyFrequency: number;
-    completionCount: number;
-}[]
+    id: string
+    title: string
+    desiredWeeklyFrequency: number
+    completionCount: number
+  }[]
 }
 
 export async function getPendingGoals(): Promise<GetPendingGoalsResponse> {

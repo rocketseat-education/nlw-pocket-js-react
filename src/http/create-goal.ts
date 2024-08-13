@@ -15,7 +15,7 @@ export async function createGoal({
     body: JSON.stringify({
       title,
       desiredWeeklyFrequency,
-    })
+    }),
   })
 
   if (!response.ok) {
