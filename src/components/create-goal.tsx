@@ -1,7 +1,16 @@
 import { X } from 'lucide-react'
 import { Button } from './ui/button'
-import { RadioGroup, RadioGroupIndicator, RadioGroupItem } from './ui/radio-group'
-import { DialogClose, DialogContent, DialogDescription, DialogTitle } from './ui/dialog'
+import {
+  RadioGroup,
+  RadioGroupIndicator,
+  RadioGroupItem,
+} from './ui/radio-group'
+import {
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from './ui/dialog'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { z } from 'zod'
@@ -21,11 +30,20 @@ type CreateGoalSchema = z.infer<typeof createGoalSchema>
 export function CreateGoal() {
   const queryClient = useQueryClient()
 
-  const { register, handleSubmit, formState: { errors }, control, reset } = useForm<CreateGoalSchema>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    reset,
+  } = useForm<CreateGoalSchema>({
     resolver: zodResolver(createGoalSchema),
   })
 
-  async function handleCreateGoal({ title, desiredWeeklyFrequency }: CreateGoalSchema) {
+  async function handleCreateGoal({
+    title,
+    desiredWeeklyFrequency,
+  }: CreateGoalSchema) {
     try {
       await createGoal({
         title,
@@ -35,7 +53,7 @@ export function CreateGoal() {
       reset()
 
       queryClient.invalidateQueries({
-        queryKey: ['pending-goals']
+        queryKey: ['pending-goals'],
       })
 
       toast.success('Meta criada com sucesso!')
@@ -57,18 +75,20 @@ export function CreateGoal() {
           </div>
 
           <DialogDescription>
-            Adicione atividades que te fazem bem e que você quer continuar praticando toda semana.
+            Adicione atividades que te fazem bem e que você quer continuar
+            praticando toda semana.
           </DialogDescription>
         </div>
 
-        <form onSubmit={handleSubmit(handleCreateGoal)} className="flex-1 flex flex-col justify-between">
+        <form
+          onSubmit={handleSubmit(handleCreateGoal)}
+          className="flex-1 flex flex-col justify-between"
+        >
           <div className="space-y-6">
             <div className="flex flex-col gap-2">
-              <Label htmlFor="title">
-                Qual a atividade?
-              </Label>
+              <Label htmlFor="title">Qual a atividade?</Label>
 
-              <Input 
+              <Input
                 id="title"
                 autoFocus
                 placeholder="Praticar exercícios, meditar, etc..."
@@ -85,14 +105,14 @@ export function CreateGoal() {
                 Quantas vezes na semana?
               </Label>
 
-              <Controller 
+              <Controller
                 control={control}
                 name="desiredWeeklyFrequency"
                 defaultValue={5}
                 render={({ field }) => {
                   return (
-                    <RadioGroup 
-                      value={String(field.value)} 
+                    <RadioGroup
+                      value={String(field.value)}
                       onValueChange={field.onChange}
                     >
                       {Array.from({ length: 7 }).map((_, i) => {
@@ -101,7 +121,9 @@ export function CreateGoal() {
                         return (
                           <RadioGroupItem key={i} value={frequency}>
                             <RadioGroupIndicator />
-                            <span className="text-zinc-300 text-sm font-medium leading-none">{frequency}x na semana</span>
+                            <span className="text-zinc-300 text-sm font-medium leading-none">
+                              {frequency}x na semana
+                            </span>
                             <span className="text-lg leading-none">🥱</span>
                           </RadioGroupItem>
                         )
@@ -115,10 +137,14 @@ export function CreateGoal() {
 
           <div className="flex items-center gap-3 mt-auto">
             <DialogClose asChild>
-              <Button variant="secondary" className="flex-1">Fechar</Button>
+              <Button variant="secondary" className="flex-1">
+                Fechar
+              </Button>
             </DialogClose>
 
-            <Button type="submit" className="flex-1">Salvar</Button>
+            <Button type="submit" className="flex-1">
+              Salvar
+            </Button>
           </div>
         </form>
       </div>

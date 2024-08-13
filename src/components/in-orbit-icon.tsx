@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react"
+import type { ComponentProps } from 'react'
 
 export function InOrbitIcon(props: ComponentProps<'svg'>) {
   return (
@@ -10,6 +10,7 @@ export function InOrbitIcon(props: ComponentProps<'svg'>) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
+      <title>Ícone in.orbit</title>
       <path
         d="M12 .5c-.936 0-1.847.107-2.72.31A12.016 12.016 0 00.31 9.78C.107 10.652 0 11.563 0 12.5c0 6.627 5.373 12 12 12 .936 0 1.847-.107 2.72-.31a12.017 12.017 0 008.97-8.968c.203-.875.31-1.786.31-2.722 0-6.627-5.373-12-12-12zm0 19.515a7.494 7.494 0 01-2.524-.435 7.535 7.535 0 01-4.556-4.555A7.515 7.515 0 1119.515 12.5 7.515 7.515 0 0112 20.015z"
         fill="url(#paint0_linear_84_261)"
@@ -96,4 +97,3 @@ export function InOrbitIcon(props: ComponentProps<'svg'>) {
     </svg>
   )
 }
-
