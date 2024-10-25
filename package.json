@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev:orval": "orval -w",
+    "dev:vite": "vite",
+    "dev": "concurrently npm:dev:*",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -32,6 +34,8 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "10.4.20",
+    "concurrently": "^9.0.1",
+    "orval": "^7.2.0",
     "postcss": "8.4.41",
     "tailwindcss": "3.4.9",
     "typescript": "^5.5.3",
