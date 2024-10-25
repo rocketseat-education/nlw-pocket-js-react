@@ -1,4 +1,4 @@
-import {defineConfig} from 'orval'
+import { defineConfig } from 'orval'
 
 export default defineConfig({
   api: {
@@ -8,7 +8,18 @@ export default defineConfig({
       target: './src/http/generated/api.ts',
       client: 'react-query',
       httpClient: 'fetch',
-      clean: true
-    }
-  }
+      clean: true,
+
+      override: {
+        fetch: {
+          includeHttpStatusReturnType: false,
+        },
+
+        mutator: {
+          path: './src/http/client.ts',
+          name: 'http',
+        },
+      },
+    },
+  },
 })
