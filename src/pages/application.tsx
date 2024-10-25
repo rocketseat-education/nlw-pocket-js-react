@@ -2,11 +2,21 @@ import { Dialog } from '@radix-ui/react-dialog'
 import { CreateGoal } from '../components/create-goal'
 import { WeeklySummary } from '../components/weekly-summary'
 import { Loader2 } from 'lucide-react'
-import { EmptyGoals } from '../components/empty-goals'
 import { useGetWeekSummary } from '../http/generated/api'
+import { useSearchParams } from 'react-router-dom'
+import dayjs from 'dayjs'
 
 export function Application() {
-  const { data, isLoading } = useGetWeekSummary()
+  const [searchParams] = useSearchParams()
+  const weekStartsAtParam = searchParams.get('week_starts_at')
+
+  const weekStartsAt = weekStartsAtParam
+    ? new Date(weekStartsAtParam)
+    : new Date()
+
+  const { data, isLoading } = useGetWeekSummary({
+    weekStartsAt: dayjs(weekStartsAt).startOf('week').toISOString(),
+  })
 
   if (isLoading || !data) {
     return (
@@ -18,12 +28,7 @@ export function Application() {
 
   return (
     <Dialog>
-      {data.summary.total && data.summary.total > 0 ? (
-        <WeeklySummary summary={data.summary} />
-      ) : (
-        <EmptyGoals />
-      )}
-
+      <WeeklySummary summary={data.summary} />
       <CreateGoal />
     </Dialog>
   )
