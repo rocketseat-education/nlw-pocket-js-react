@@ -18,8 +18,7 @@ export function SignInWithGithubCallback() {
 
   useEffect(() => {
     authenticateFromGithub({ data: { code } }).then(response => {
-      console.log(response)
-      const token = response.data.token
+      const token = response.token
       const cookies = new Cookies()
 
       cookies.set('in-orbit.token', token, {
